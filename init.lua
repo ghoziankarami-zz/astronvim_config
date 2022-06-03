@@ -62,7 +62,7 @@ local config = {
   plugins = {
     -- Add plugins, the packer syntax without the "use"
     init = {
-      {'rhysd/vim-grammarous'},
+      {'rhysd/vim-grammarous'}, --Grammar check plugin
       {'Pocco81/TrueZen.nvim'}, --Distraction free plugin
       {'preservim/vim-pencil'},
       {'goerz/jupytext.vim'} --jupytext plugin for converting ipynb
