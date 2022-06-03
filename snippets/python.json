@@ -1,11 +1,9 @@
 {
   "setup": {
-    "For loop": {
-
-    "prefix": "for",
-
-    "description": "Ghoziankarami test snippet python",
-
-    "body": ["for (${1:uint8_t} ${2:i} = 0; $2 < ${3}; $2++)", "{", "\t${0}", "}"]    }
-  
+    "prefix": ["setup", "template"],
+    "body": [
+      import pandas as pd
+    ],
+    "description": "Ghozian karami coba aja"
+  }
 }
