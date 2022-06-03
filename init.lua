@@ -59,7 +59,8 @@ local config = {
     -- Add plugins, the packer syntax without the "use"
     init = {
       {'rhysd/vim-grammarous'},
-      {'Pocco81/TrueZen.nvim'}  --Distraction free plugin
+      {'Pocco81/TrueZen.nvim'}, --Distraction free plugin
+      {'preservim/vim-pencil'}
 
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
