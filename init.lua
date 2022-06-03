@@ -65,7 +65,7 @@ local config = {
       {'rhysd/vim-grammarous'},
       {'Pocco81/TrueZen.nvim'}, --Distraction free plugin
       {'preservim/vim-pencil'},
-      {'goerz/jupytext.vim'}
+      {'goerz/jupytext.vim'} --jupytext plugin for converting ipynb
 
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
