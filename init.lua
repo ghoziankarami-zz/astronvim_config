@@ -10,6 +10,10 @@ local config = {
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
+      jupytext_enable = 1,
+      jupytext_command = 'jupytext',
+      jupytext_fmt = 'py',
+      jupytext_to_ipynb_opts = '--to=ipynb --update'
     },
   },
 
@@ -58,6 +62,11 @@ local config = {
   plugins = {
     -- Add plugins, the packer syntax without the "use"
     init = {
+      {'rhysd/vim-grammarous'},
+      {'Pocco81/TrueZen.nvim'}, --Distraction free plugin
+      {'preservim/vim-pencil'},
+      {'goerz/jupytext.vim'}
+
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
 
@@ -110,7 +119,7 @@ local config = {
   -- LuaSnip Options
   luasnip = {
     -- Add paths for including more VS Code style snippets in luasnip
-    vscode_snippet_paths = {},
+    vscode_snippet_paths = {"./lua/user/snippets",},
     -- Extend filetypes
     filetype_extend = {
       javascript = { "javascriptreact" },
@@ -189,9 +198,11 @@ local config = {
   -- good place to configure mappings and vim options
   polish = function()
     -- Set key bindings
-    vim.keymap.set("n", "<C-s>", ":w!<CR>")
-
-    -- Set autocommands
+    vim.keymap.set("n", "<leader>tg", "<cmd>:GrammarousCheck<cr>", { desc = "Grammarous Check" })
+    vim.keymap.set("n", "<F12>", "<cmd>:TZAtaraxis<cr><cmd>:Pencil<cr>", { desc = "Distraction Free" })
+    vim.keymap.set("n", "<leader>r", "<cmd>:ToggleTermSendCurrentLine<cr>", { desc = "Sending Current Line" })
+    vim.keymap.set("v", "<F2>", "<cmd>:'<,'>ToggleTermSendVisualLines<cr>", { desc = "Sending selection" })
+      -- Set autocommands
     vim.api.nvim_create_augroup("packer_conf", { clear = true })
     vim.api.nvim_create_autocmd("BufWritePost", {
       desc = "Sync packer after modifying plugins.lua",
@@ -214,5 +225,77 @@ local config = {
     -- }
   end,
 }
+
+-- TrueZen Options
+local true_zen = require("true-zen")
+
+true_zen.setup({
+	ui = {
+		bottom = {
+			laststatus = 0,
+			ruler = false,
+			showmode = false,
+			showcmd = false,
+			cmdheight = 1,
+		},
+		top = {
+			showtabline = 0,
+		},
+		left = {
+			number = false,
+			relativenumber = false,
+			signcolumn = "no",
+		},
+	},
+	modes = {
+		ataraxis = {
+			left_padding = 32,
+			right_padding = 32,
+			top_padding = 1,
+			bottom_padding = 1,
+			ideal_writing_area_width = {0},
+			auto_padding = true,
+			keep_default_fold_fillchars = true,
+			custom_bg = {"none", ""},
+			bg_configuration = true,
+			quit = "untoggle",
+			ignore_floating_windows = true,
+			affected_higroups = {
+				NonText = true,
+				FoldColumn = true,
+				ColorColumn = true,
+				VertSplit = true,
+				StatusLine = true,
+				StatusLineNC = true,
+				SignColumn = true,
+			},
+		},
+		focus = {
+			margin_of_error = 5,
+			focus_method = "experimental"
+		},
+	},
+	integrations = {
+		vim_gitgutter = false,
+		galaxyline = false,
+		tmux = false,
+		gitsigns = false,
+		nvim_bufferline = false,
+		limelight = false,
+		twilight = false,
+		vim_airline = false,
+		vim_powerline = false,
+		vim_signify = false,
+		express_line = false,
+		lualine = false,
+		lightline = false,
+		feline = false
+	},
+	misc = {
+		on_off_commands = false,
+		ui_elements_commands = false,
+		cursor_by_mode = false,
+	}
+})
 
 return config
