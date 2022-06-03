@@ -10,6 +10,10 @@ local config = {
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
+      jupytext_enable = 1,
+      jupytext_command = 'jupytext',
+      jupytext_fmt = 'py',
+      jupytext_to_ipynb_opts = '--to=ipynb --update'
     },
   },
 
@@ -60,7 +64,8 @@ local config = {
     init = {
       {'rhysd/vim-grammarous'},
       {'Pocco81/TrueZen.nvim'}, --Distraction free plugin
-      {'preservim/vim-pencil'}
+      {'preservim/vim-pencil'},
+      {'goerz/jupytext.vim'}
 
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
@@ -193,12 +198,11 @@ local config = {
   -- good place to configure mappings and vim options
   polish = function()
     -- Set key bindings
-    vim.keymap.set("n", "<C-s>", ":w!<CR>")
-
-    -- grammarous
     vim.keymap.set("n", "<leader>tg", "<cmd>:GrammarousCheck<cr>", { desc = "Grammarous Check" })
     vim.keymap.set("n", "<F12>", "<cmd>:TZAtaraxis<cr><cmd>:Pencil<cr>", { desc = "Distraction Free" })
-    -- Set autocommands
+    vim.keymap.set("n", "<leader>r", "<cmd>:ToggleTermSendCurrentLine<cr>", { desc = "Sending Current Line" })
+    vim.keymap.set("v", "<F2>", "<cmd>:'<,'>ToggleTermSendVisualLines<cr>", { desc = "Sending selection" })
+      -- Set autocommands
     vim.api.nvim_create_augroup("packer_conf", { clear = true })
     vim.api.nvim_create_autocmd("BufWritePost", {
       desc = "Sync packer after modifying plugins.lua",
