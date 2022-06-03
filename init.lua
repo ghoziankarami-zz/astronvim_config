@@ -197,7 +197,7 @@ local config = {
 
     -- grammarous
     vim.keymap.set("n", "<leader>tg", "<cmd>:GrammarousCheck<cr>", { desc = "Grammarous Check" })
-    vim.keymap.set("n", "<F12>", "<cmd>:TZAtaraxis<cr>", { desc = "Distraction Free" })
+    vim.keymap.set("n", "<F12>", "<cmd>:TZAtaraxis<cr><cmd>:Pencil<cr>", { desc = "Distraction Free" })
     -- Set autocommands
     vim.api.nvim_create_augroup("packer_conf", { clear = true })
     vim.api.nvim_create_autocmd("BufWritePost", {
