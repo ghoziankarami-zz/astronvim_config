@@ -202,6 +202,8 @@ local config = {
     vim.keymap.set("n", "<F12>", "<cmd>:TZAtaraxis<cr><cmd>:Pencil<cr>", { desc = "Distraction Free" })
     vim.keymap.set("n", "<leader>r", "<cmd>:ToggleTermSendCurrentLine<cr>", { desc = "Sending Current Line" })
     vim.keymap.set("v", "<F2>", "<cmd>:'<,'>ToggleTermSendVisualLines<cr>", { desc = "Sending selection" })
+    vim.keymap.set("n", "<esc>", "<cmd>:noh<cr>")
+
       -- Set autocommands
     vim.api.nvim_create_augroup("packer_conf", { clear = true })
     vim.api.nvim_create_autocmd("BufWritePost", {
