@@ -65,7 +65,10 @@ local config = {
       {'rhysd/vim-grammarous'}, --Grammar check plugin
       {'Pocco81/TrueZen.nvim'}, --Distraction free plugin
       {'preservim/vim-pencil'},
-      {'goerz/jupytext.vim'} --jupytext plugin for converting ipynb
+      {'goerz/jupytext.vim'}, --jupytext plugin for converting ipynb
+      {'sudormrfbin/cheatsheet.nvim'},
+      {'nvim-lua/popup.nvim'}, --cheatsheet requirement 1
+      {'nvim-lua/plenary.nvim'} --cheatheet requirement 2
 
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
@@ -199,7 +202,8 @@ local config = {
   polish = function()
     -- Set key bindings
     vim.keymap.set("n", "<leader>tg", "<cmd>:GrammarousCheck<cr>", { desc = "Grammarous Check" })
-    vim.keymap.set("n", "<F12>", "<cmd>:TZAtaraxis<cr><cmd>:Pencil<cr>", { desc = "Distraction Free" })
+    vim.keymap.set("n", "<F12>", "<cmd>:TZAtaraxis<cr><cmd>:Pencil<cr>", { desc = "Distraction Free and Pencil toggle" })
+    vim.keymap.set("n", "<F11>", "<cmd>:Pencil<cr>", { desc = "Pencil toggle" })
     vim.keymap.set("n", "<leader>r", "<cmd>:ToggleTermSendCurrentLine<cr>", { desc = "Sending Current Line" })
     vim.keymap.set("v", "<F2>", "<cmd>:'<,'>ToggleTermSendVisualLines<cr>", { desc = "Sending selection" })
     vim.keymap.set("n", "<esc>", "<cmd>:noh<cr>")
@@ -298,6 +302,37 @@ true_zen.setup({
 		ui_elements_commands = false,
 		cursor_by_mode = false,
 	}
+})
+-- Cheatsheet plugin
+require("cheatsheet").setup({
+    -- Whether to show bundled cheatsheets
+
+    -- For generic cheatsheets like default, unicode, nerd-fonts, etc
+    -- bundled_cheatsheets = {
+    --     enabled = {},
+    --     disabled = {},
+    -- },
+    bundled_cheatsheets = true,
+
+    -- For plugin specific cheatsheets
+    -- bundled_plugin_cheatsheets = {
+    --     enabled = {},
+    --     disabled = {},
+    -- }
+    bundled_plugin_cheatsheets = true,
+
+    -- For bundled plugin cheatsheets, do not show a sheet if you
+    -- don't have the plugin installed (searches runtimepath for
+    -- same directory name)
+    include_only_installed_plugins = true,
+
+    -- Key mappings bound inside the telescope window
+    telescope_mappings = {
+        ['<CR>'] = require('cheatsheet.telescope.actions').select_or_fill_commandline,
+        ['<A-CR>'] = require('cheatsheet.telescope.actions').select_or_execute,
+        ['<C-Y>'] = require('cheatsheet.telescope.actions').copy_cheat_value,
+        ['<C-E>'] = require('cheatsheet.telescope.actions').edit_user_cheatsheet,
+    }
 })
 
 return config
