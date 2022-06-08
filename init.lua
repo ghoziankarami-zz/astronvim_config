@@ -7,6 +7,7 @@ local config = {
   options = {
     opt = {
       relativenumber = true, -- sets vim.opt.relativenumber
+      buftype=""
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
@@ -202,11 +203,16 @@ local config = {
   polish = function()
     -- Set key bindings
     vim.keymap.set("n", "<leader>tg", "<cmd>:GrammarousCheck<cr>", { desc = "Grammarous Check" })
-    vim.keymap.set("n", "<F12>", "<cmd>:TZAtaraxis<cr><cmd>:Pencil<cr>", { desc = "Distraction Free and Pencil toggle" })
-    vim.keymap.set("n", "<F11>", "<cmd>:Pencil<cr>", { desc = "Pencil toggle" })
+    vim.keymap.set("n", "<F12>", "<cmd>:TZAtaraxis<cr>", { desc = "Distraction Free and Pencil toggle" })
+    vim.keymap.set("n", "<F11>", "<cmd>:PencilSoft<cr>", { desc = "Pencil toggle" })
     vim.keymap.set("n", "<leader>r", "<cmd>:ToggleTermSendCurrentLine<cr>", { desc = "Sending Current Line" })
     vim.keymap.set("v", "<F2>", "<cmd>:'<,'>ToggleTermSendVisualLines<cr>", { desc = "Sending selection" })
     vim.keymap.set("n", "<esc>", "<cmd>:noh<cr>")
+    vim.keymap.set("n", "<Up>", "<cmd><Nop><cr>")
+    vim.keymap.set("n", "<Down>", "<cmd><Nop><cr>")
+    vim.keymap.set("n", "<Left>", "<cmd><Nop><cr>")
+    vim.keymap.set("n", "<Right>", "<cmd><Nop><cr>")
+
 
       -- Set autocommands
     vim.api.nvim_create_augroup("packer_conf", { clear = true })
